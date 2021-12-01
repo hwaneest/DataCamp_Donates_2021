@@ -29,8 +29,6 @@
 
 ### Git의 Repository 구조
 
-![스크린샷 2021-09-09 오전 10.08.30.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cd34d7c6-36b2-4283-8afa-c400c3000194/스크린샷_2021-09-09_오전_10.08.30.png)
-
 작업폴더(Working directory), 인덱스(Staging Area), 저장소(Head-Repository)
 
 **작업폴더**
