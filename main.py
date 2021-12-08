@@ -2,14 +2,16 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-
+# Sidebar
 add_selectbox = st.sidebar.selectbox(
     "과거 지표와 비교하는 코로나19",
     ("선택", "오미크론", "주식", '코로나와 소득수준', '사회적 거리두기')
 )
 
+# Data
 df = pd.read_csv('~/data/trends-extend.csv')
 
+# Body
 st.title('How serious is covid now?')
 
 st.header('오늘 코로나19')
@@ -29,11 +31,6 @@ col3.metric('사망자', f'{df.iloc[0, 12]}명', f'{df.iloc[0, 12] - df.iloc[1, 
 
 st.header('데이터')
 st.dataframe(df)
-
-
-# st.write('st.line_chart api')
-# st.line_chart(df)
-
 
 # pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column value with type object')
 # df_temp = df.astype(str)
@@ -77,7 +74,7 @@ st.line_chart(df_seoul)
 st.subheader('추가 확진자')
 st.bar_chart(df_seoul_bar)
 
-with st.expander('소스 코드 확인ㄴ'):
+with st.expander('소스 코드 확인'):
     st.code("""import pandas as pd
 import streamlit as st
 
