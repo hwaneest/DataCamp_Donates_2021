@@ -2,14 +2,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Sidebar
+# Sideba.r
 add_selectbox = st.sidebar.selectbox(
     "과거 지표와 비교하는 코로나19",
     ("선택", "오미크론", "주식", '코로나와 소득수준', '사회적 거리두기')
 )
 
 # Data
-df = pd.read_csv('~/data/trends-extend.csv')
+df = pd.read_csv('/app/data/trends-extend.csv')
 
 # Body
 st.title('How serious is covid now?')
@@ -53,7 +53,7 @@ with st.expander('소스 코드 확인'):
     st.code("""import pandas as pd
 import streamlit as st
     
-df = pd.read_csv('~/data/trends-extend.csv')
+df = pd.read_csv('./data/trends-extend.csv')
     
 df_seoul = df.iloc[:, [0, 1, 3, 4, 6]]
 df_seoul.set_index('서울시 기준일', inplace=True)
