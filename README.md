@@ -5,8 +5,9 @@
 git clone https://github.com/cozytk/covid_dashboard.git
 docker build -f Dockefile -t taekkim/covid-dashboard:latest .
 docker run -p 8501:8501 taekkim/covid-dashboard:latest
+```
 
-
+```shell
 # venv
 git clone https://github.com/cozytk/covid_dashboard.git
 python3 -m venv ./venv
