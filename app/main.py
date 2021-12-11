@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Sideba.r
+# Sidebar
 add_selectbox = st.sidebar.selectbox(
     "과거 지표와 비교하는 코로나19",
     ("선택", "오미크론", "주식", '코로나와 소득수준', '사회적 거리두기')
