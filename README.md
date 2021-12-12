@@ -4,7 +4,7 @@
 # Docker(Recommended)
 git clone https://github.com/cozytk/covid_dashboard.git
 docker build -f Dockefile -t taekkim/covid-dashboard:latest .
-docker run -p 8501:8501 taekkim/covid-dashboard:latest
+docker run -p 8080:8080 taekkim/covid-dashboard:latest
 ```
 
 ```shell
