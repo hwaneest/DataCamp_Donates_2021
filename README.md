@@ -13,7 +13,7 @@ git clone https://github.com/cozytk/covid_dashboard.git
 python3 -m venv ./venv
 source ./venv/bin/activate
 pip install -r requirements.txt
-streamlit run app/main.py
+streamlit run app/app.py
 ```
 
 # Service
