@@ -12,7 +12,7 @@ add_selectbox = st.sidebar.selectbox(
 )
 
 # Data
-df = pd.read_csv('data/trends-extend.csv', ignore_index=False)
+df = pd.read_csv('data/trends-extend.csv')
 
 # Body
 st.title('How serious is covid now?')
