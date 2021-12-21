@@ -10,7 +10,7 @@ name: covid19_cases
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 8 * * *'
 jobs:
   deploy:
 
@@ -26,9 +26,9 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run app/update.py
+    - name: Run app/crawling.py
       run: |
-          python3 app/update.py
+          python3 app/crawling.py
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         MY_GITHYB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
