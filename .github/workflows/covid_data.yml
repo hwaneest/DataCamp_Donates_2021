@@ -26,9 +26,9 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run update.py
+    - name: Run app/update.py
       run: |
-          python3 update.py
+          python3 app/update.py
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         MY_GITHYB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
