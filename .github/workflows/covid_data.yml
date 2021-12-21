@@ -10,12 +10,10 @@ name: covid19_cases
 
 on:
   schedule:
-    - cron: '00 9 * * *'
+    - cron: '0 9 * * *'
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
