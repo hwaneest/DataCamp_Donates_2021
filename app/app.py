@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import os
 import seaborn as sns
 
+PATH = os.getenv('PWD')
+print(PATH)
+
 # Sidebar
 add_selectbox = st.sidebar.selectbox(
     "과거 지표와 비교하는 코로나19",

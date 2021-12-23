@@ -35,14 +35,16 @@ n_hjs = find_and_get('n_hj')
 ty_care = find_and_get('ty_care')
 recovers = find_and_get('recover')
 deaths = find_and_get('death')
+ls = [s_dts, s_hjs, sn_hjs, s_cares, s_recovers, sn_recovers, s_deaths, t_dts, t_hjs, n_hjs, ty_care, recovers, deaths]
 
 s_dts = list(map(lambda x: dt.datetime.strptime(x, '%Y.%m.%d.%H'), s_dts))
 t_dts = list(map(lambda x: dt.datetime.strptime(x, '%Y.%m.%d.%H'), t_dts))
-ls = [s_dts, s_hjs, sn_hjs, s_cares, s_recovers, sn_recovers, s_deaths, t_dts, t_hjs, n_hjs, ty_care, recovers, deaths]
 lst = list(np.array(ls).T)
 new = pd.DataFrame(lst, columns=df.columns)
 new = new.append(df, ignore_index=True)
-df['서울시 기준일'].apply(lambda x: x.strftime('%m%d'))
-df['서울시 기준일'] = df['서울시 기준일'].apply(lambda x: x[2:10])
-df['전국 기준일'] = df['전국 기준일'].apply(lambda x: x[2:10])
-new.to_csv(PATH + '/data/trends-extend.csv', index=False)
+new['서울시 기준일'] = new['서울시 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
+new['전국 기준일'] = new['전국 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
+print(new.head())
+for i in new['서울시 기준일']:
+    print(type(i))
+new.to_csv(PATH + '/data/trends-extend-temp.csv', index=False)
