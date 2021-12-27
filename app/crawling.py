@@ -6,7 +6,7 @@ import numpy as np
 import datetime as dt
 
 PATH = os.getenv('PWD')
-url = 'http://openapi.seoul.go.kr:8088/'+ os.environ['API_TOKEN'] + '/xml/TbCorona19CountStatus/1/1/'
+url = 'http://openapi.seoul.go.kr:8088/'+ os.environ['API_TOKEN'] + '/xml/TbCorona19CountStatus/1/4/'
 r = requests.get(url)
 s = BeautifulSoup(r.text, 'lxml')
 df = pd.read_csv(PATH + '/data/trends-extend.csv')
@@ -44,7 +44,4 @@ new = pd.DataFrame(lst, columns=df.columns)
 new = new.append(df, ignore_index=True)
 new['서울시 기준일'] = new['서울시 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
 new['전국 기준일'] = new['전국 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
-print(new.head())
-for i in new['서울시 기준일']:
-    print(type(i))
-new.to_csv(PATH + '/data/trends-extend-temp.csv', index=False)
+new.to_csv(PATH + '/data/trends-extend.csv', index=False)
