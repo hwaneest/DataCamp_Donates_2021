@@ -6,7 +6,7 @@ import numpy as np
 import datetime as dt
 
 PATH = os.getenv('PWD')
-url = 'http://openapi.seoul.go.kr:8088/'+ os.environ['API_TOKEN'] + '/xml/TbCorona19CountStatus/1/4/'
+url = 'http://openapi.seoul.go.kr:8088/'+ os.environ['API_TOKEN'] + '/xml/TbCorona19CountStatus/1/1/'
 r = requests.get(url)
 s = BeautifulSoup(r.text, 'lxml')
 df = pd.read_csv(PATH + '/data/trends-extend.csv')
