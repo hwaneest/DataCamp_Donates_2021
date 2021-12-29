@@ -5,9 +5,6 @@ import matplotlib.pyplot as plt
 import os
 import seaborn as sns
 
-PATH = os.getenv('PWD')
-print(PATH)
-
 # Sidebar
 add_selectbox = st.sidebar.selectbox(
     "과거 지표와 비교하는 코로나19",
@@ -15,7 +12,7 @@ add_selectbox = st.sidebar.selectbox(
 )
 
 # Data
-df = pd.read_csv('data/trends-extend.csv')
+df = pd.read_csv('./data/trends-extend.csv')
 
 # Body
 st.title('How serious is covid now?')

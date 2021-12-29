@@ -4,8 +4,8 @@ EXPOSE 8080
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 RUN /usr/local/bin/python -m pip install --upgrade pip
-COPY app/ .
-COPY data/ .
+COPY app/ ./app/
+COPY data/ ./data/
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-CMD streamlit run --server.port 8080 --server.enableCORS false app.py
+CMD streamlit run --server.port 8080 --server.enableCORS false app/app.py
