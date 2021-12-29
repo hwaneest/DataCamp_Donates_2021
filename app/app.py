@@ -1,18 +1,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt, rc
 import seaborn as sns
-
-
-# 한글폰트 사용
 import os
 
 if os.name == 'posix':
-
-    plt.rc("font", family="AppleGothic")
-else :
-
+    font_path = 'font/NanumGothic.ttf'
+    font_name = font_manager.FontProperties(fname=font_path).get_name()
+    plt.rc("font", family=font_name)
+else:
     plt.rc("font", family="Malgun Gothic")
     
 
