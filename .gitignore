@@ -4,5 +4,5 @@ notebook/
 temp/
 backup/
 .ipynb_checkpoints/
-Untitled.ipynb/
-data.zip/
+Untitled.ipynb
+data.zip
