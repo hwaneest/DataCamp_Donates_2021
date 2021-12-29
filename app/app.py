@@ -27,7 +27,6 @@ add_selectbox = st.sidebar.selectbox(
 df = pd.read_csv('./data/trends-extend.csv')
 df_covid  = pd.read_csv('./data/covid_data_.csv')
 
-
 # Body
 st.title('How serious is covid now?')
 
@@ -212,8 +211,7 @@ st.bar_chart(df_seoul_bar[::30])
 # fig2.tight_layout() # 메소드는 서브 플롯간에 올바른 간격을 자동으로 유지합니다.
 # plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95, wspace=0.7, hspace=0.5) #  #subplot 간 간격 조절
 # st.pyplot(fig2)
-
-    
+      
 st.subheader("기간별 확진자 증가추이")
 x= df_covid["확진일"].value_counts().sort_index()
 
@@ -262,4 +260,3 @@ ax.set_title("거주지 별 확진자 수 ")
 plt.xticks(rotation = 45)
 st.pyplot(fig)
 st.write('거주지별 확진자수를 나타낸 막대차트입니다. 서울시 거주지 인구수는 송파구, 강서구, 노원구, 관악구 순으로 많습니다. 하지만 코로나 확진자수는 완전히 거주지인구수에 비례하게 나타나지 않는 모습을 볼 수 있습니다. ')
-
