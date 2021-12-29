@@ -3,3 +3,6 @@ venv/
 notebook/
 temp/
 backup/
+.ipynb_checkpoints/
+Untitled.ipynb
+data.zip
