@@ -2,12 +2,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import rc
+from matplotlib import font_manager
 import seaborn as sns
 import os
 
 if os.name == 'posix':
-    font_path = 'font/NanumGothic.ttf'
+    font_path = 'font/applegothic.ttf'
     font_name = font_manager.FontProperties(fname=font_path).get_name()
     plt.rc("font", family=font_name)
 else:
