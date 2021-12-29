@@ -9,8 +9,9 @@
 name: covid19_cases
 
 on:
-  schedule:
-    - cron: '20 8 * * *'
+  [push]
+#   schedule:
+#     - cron: '20 8 * * *'
 jobs:
   deploy:
     runs-on: ubuntu-latest
