@@ -6,14 +6,25 @@ import numpy as np
 import datetime as dt
 
 PATH = os.getenv('PWD')
-url = 'http://openapi.seoul.go.kr:8088/'+ os.environ['API_TOKEN'] + '/xml/TbCorona19CountStatus/1/1/'
+url = f'http://openapi.seoul.go.kr:8088/{os.environ["API_TOKEN"]}/xml/TbCorona19CountStatus/1/1/'
 r = requests.get(url)
 s = BeautifulSoup(r.text, 'lxml')
 df = pd.read_csv(PATH + '/data/trends-extend.csv')
-assert str(df.iloc[0]['서울시 기준일']) != str(dt.datetime.strptime(s.s_dt.get_text(), '%Y.%m.%d.%H')), 'Already Udpated'
 
+latest = df['서울시 기준일'][0]
+new = s.s_dt.get_text()
+delta = dt.datetime.strptime(new, '%Y.%m.%d.%H') - dt.datetime.strptime(latest, '%y.%m.%d')
+date_diff = delta.days
 
-# Last date를 저장해서 비교하는 방법 사용 가능
+if date_diff == 0:
+    exit(0)
+elif date_diff == 1:
+    pass
+else:
+    url = f'http://openapi.seoul.go.kr:8088/694a786b456272613832484564666b/xml/TbCorona19CountStatus/1/{date_diff}/'
+    r = requests.get(url)
+    s = BeautifulSoup(r.text, 'lxml')
+
 
 def find_and_get(st):
     l = []
@@ -37,11 +48,9 @@ recovers = find_and_get('recover')
 deaths = find_and_get('death')
 ls = [s_dts, s_hjs, sn_hjs, s_cares, s_recovers, sn_recovers, s_deaths, t_dts, t_hjs, n_hjs, ty_care, recovers, deaths]
 
-s_dts = list(map(lambda x: dt.datetime.strptime(x, '%Y.%m.%d.%H'), s_dts))
-t_dts = list(map(lambda x: dt.datetime.strptime(x, '%Y.%m.%d.%H'), t_dts))
+s_dts = list(map(lambda x: x[2:10], s_dts))
+t_dts = list(map(lambda x: x[2:10], t_dts))
 lst = list(np.array(ls).T)
 new = pd.DataFrame(lst, columns=df.columns)
 new = new.append(df, ignore_index=True)
-new['서울시 기준일'] = new['서울시 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
-new['전국 기준일'] = new['전국 기준일'].apply(lambda x: x[2:10] if len(x) == 13 else x)
 new.to_csv(PATH + '/data/trends-extend.csv', index=False)
