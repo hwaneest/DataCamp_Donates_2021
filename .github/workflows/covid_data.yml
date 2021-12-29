@@ -10,7 +10,7 @@ name: covid19_cases
 
 on:
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '20 8 * * *'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,3 +30,10 @@ jobs:
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         MY_GITHYB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+    - name: Add & commit
+      uses: EndBug/add-and-commit@v7.5.0
+      with:
+        default-author: github_actions
+        message: 'cicd(csv): latest'
+        committer_name: Taekyun Kim
+        committer_email: brandon1609@naver.com
