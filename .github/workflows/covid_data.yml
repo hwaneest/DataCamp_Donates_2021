@@ -33,7 +33,6 @@ jobs:
     - name: Add & commit
       uses: EndBug/add-and-commit@v7.5.0
       with:
-        default-author: github_actions
         message: 'cicd(csv): latest'
         committer_name: Taekyun Kim
         committer_email: brandon1609@naver.com
