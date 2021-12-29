@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt, rc
+import matplotlib.pyplot as plt
+from matplotlib import rc
 import seaborn as sns
 import os
 
