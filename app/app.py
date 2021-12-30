@@ -7,9 +7,8 @@ import seaborn as sns
 import os
 
 if os.name == 'posix':
-    font_path = 'font/applegothic.ttf'
-    font_name = font_manager.FontProperties(fname=font_path).get_name()
-    plt.rc("font", family=font_name)
+    font_manager.fontManager.addfont('font/NanumGothicCoding-Regular.ttf')
+    plt.rc("font", family='NanumGothicCoding')
 else:
     plt.rc("font", family="Malgun Gothic")
     
