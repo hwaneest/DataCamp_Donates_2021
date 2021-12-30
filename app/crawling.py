@@ -53,4 +53,4 @@ ls = [s_dts, s_hjs, sn_hjs, s_cares, s_recovers, sn_recovers, s_deaths, t_dts, t
 lst = list(np.array(ls).T)
 new = pd.DataFrame(lst, columns=df.columns)
 new = new.append(df, ignore_index=True)
-new.to_csv(PATH + '/data/trends-extend_temp.csv', index=False)
+new.to_csv(PATH + '/data/trends-extend.csv', index=False)
