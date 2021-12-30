@@ -34,6 +34,7 @@ def find_and_get(st):
 
 
 s_dts = find_and_get('s_dt')
+s_dts = list(map(lambda x: x[2:10], s_dts))
 s_hjs = find_and_get('s_hj')
 sn_hjs = find_and_get('sn_hj')
 s_cares = find_and_get('s_care')
@@ -41,6 +42,7 @@ s_recovers = find_and_get('s_recover')
 sn_recovers = find_and_get('sn_recover')
 s_deaths = find_and_get('s_death')
 t_dts = find_and_get('t_dt')
+t_dts = list(map(lambda x: x[2:10], t_dts))
 t_hjs = find_and_get('t_hj')
 n_hjs = find_and_get('n_hj')
 ty_care = find_and_get('ty_care')
@@ -48,9 +50,7 @@ recovers = find_and_get('recover')
 deaths = find_and_get('death')
 ls = [s_dts, s_hjs, sn_hjs, s_cares, s_recovers, sn_recovers, s_deaths, t_dts, t_hjs, n_hjs, ty_care, recovers, deaths]
 
-s_dts = list(map(lambda x: x[2:10], s_dts))
-t_dts = list(map(lambda x: x[2:10], t_dts))
 lst = list(np.array(ls).T)
 new = pd.DataFrame(lst, columns=df.columns)
 new = new.append(df, ignore_index=True)
-new.to_csv(PATH + '/data/trends-extend.csv', index=False)
+new.to_csv(PATH + '/data/trends-extend_temp.csv', index=False)
