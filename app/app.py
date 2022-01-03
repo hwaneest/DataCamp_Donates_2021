@@ -33,17 +33,18 @@ st.title('How serious is covid now?')
 
 st.header('오늘 코로나19')
 st.caption(f'updated: {df.iloc[0, 0]}')
-st.subheader('서울')
-col1, col2, col3 = st.columns(3)
-col1.metric('총 확진자', f'{df.iloc[0, 1]}명', f'{df.iloc[0, 1] - df.iloc[1, 1]}명')
-col2.metric('추가 확진자 ', f'{df.iloc[0, 2]}명', f'{df.iloc[0, 2] - df.iloc[1, 2]}명')
-col3.metric('사망자', f'{df.iloc[0, 6]}명', f'{df.iloc[0, 6] - df.iloc[1, 6]}명')
 
 st.subheader('전국')
 col1, col2, col3 = st.columns(3)
-col1.metric('총 확진자', f'{df.iloc[0, 8]}명', f'{df.iloc[0, 8] - df.iloc[1, 8]}명')
-col2.metric('추가 확진자 ', f'{df.iloc[0, 9]}명', f'{df.iloc[0, 9] - df.iloc[1, 9]}명')
-col3.metric('사망자', f'{df.iloc[0, 12]}명', f'{df.iloc[0, 12] - df.iloc[1, 12]}명')
+col1.metric('추가 확진자 ', f'{df.iloc[0, 9]:,}명', f'{df.iloc[0, 9] - df.iloc[1, 9]:,}명')
+col2.metric('총 확진자', f'{df.iloc[0, 8]:,}명', f'{df.iloc[0, 8] - df.iloc[1, 8]:,}명')
+col3.metric('사망자', f'{df.iloc[0, 12]:,}명', f'{df.iloc[0, 12] - df.iloc[1, 12]:,}명')
+
+st.subheader('서울')
+col1, col2, col3 = st.columns(3)
+col1.metric('추가 확진자 ', f'{df.iloc[0, 2]:,}명', f'{df.iloc[0, 2] - df.iloc[1, 2]:,}명')
+col2.metric('총 확진자', f'{df.iloc[0, 1]:,}명', f'{df.iloc[0, 1] - df.iloc[1, 1]:,}명')
+col3.metric('사망자', f'{df.iloc[0, 6]:,}명', f'{df.iloc[0, 6] - df.iloc[1, 6]:,}명')
 
 st.header('데이터')
 st.dataframe(df)
@@ -55,11 +56,9 @@ df_seoul = df.iloc[:, [0, 6, 1, 3, 4]]
 df_seoul.set_index('서울시 기준일', inplace=True)
 
 df_seoul_bar = df.iloc[:, [0, 9]]
-df_seoul_bar.loc[:, '서울시 기준일'] = df_seoul_bar['서울시 기준일'].apply(lambda x: x[3:5] + x[6:8])
 df_seoul_bar.set_index('서울시 기준일', inplace=True)
 
 df_seoul_line = df.iloc[:, [0, 2, 9]]
-df_seoul_line.loc[:, '서울시 기준일'] = df_seoul_line['서울시 기준일'].apply(lambda x: x[3:5] + x[6:8])
 df_seoul_line.set_index('서울시 기준일', inplace=True)
 
 st.header('최근 일주일 코로나19')
