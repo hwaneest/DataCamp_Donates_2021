@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.express as px
 from matplotlib import font_manager
 import seaborn as sns
 import os
@@ -108,29 +109,29 @@ st.header('한 달 간격으로 보는 코로나19')
 st.bar_chart(df_seoul_bar[::30])
     """, language='python')
 
-st.write('Testing')
-
-# @st.experimental_memo(suppress_st_warning=True)
-# def draw_plot():
-
 # x= df_covid["확진일"].value_counts().sort_index()
+# x = df['전국 기준일'].apply(lambda x: x.replace('.', '-'))
 
-fig , ax = plt.subplots(figsize =  (20,10))
-
+fig, ax = plt.subplots(figsize=(10,8))
 # sns.lineplot( x.index, x.values ,color = "r", ax = ax)
 sns.lineplot( df['서울시 기준일'], df['서울시 추가 확진'] ,color = "r", ax = ax)
+
 ax.set_title("기간별 확진자 증가 추이")
 ax.set_ylabel("확진자수")
 st.pyplot(fig)
-st.write('20.3.10 ~ 21-12-15 까지의 코로나 확진자수를 나타낸 라인 그래프입니다.20년도에는 집단감염원인이 그래프의 변동성을 키웠고 21년도에 들어서면서 집단감염이 아닌 지역감염으로 번짐에 따라 확진자수가 가파르게 증가하는 것을 볼 수 있습니다.')
+
+# Plotly
+# x = df['전국 기준일'].apply(lambda x: x.replace('.', '-'))
+# fig = px.line(df[::-1], x=x[::-1], y=['전국 추가 확진','서울시 추가 확진'],title=f'코로나19 확진자 발생 통계 (updated: {df.iloc[0, 0]})', labels={'x':'날짜', 'value':'확진자 발생', 'variable':'지역'})
+# st.plotly_chart(fig, use_container_width=True)
+# st.write(f'20.02.05 ~ {df.iloc[0, 0]} 까지의 코로나 확진자수를 나타낸 라인 그래프입니다.20년도에는 집단감염원인이 그래프의 변동성을 키웠고 21년도에 들어서면서 집단감염이 아닌 지역감염으로 번짐에 따라 확진자수가 가파르게 증가하는 것을 볼 수 있습니다.')
 
 t = df_covid["접촉력"].value_counts().sort_values().tail(10)
-
 st.subheader("접촉력 파악")
-fig ,ax  = plt.subplots(figsize = (10,8))
-sns.set_palette("Reds", 10)
-sns.barplot(t.index , t.values , ax = ax)
-plt.xticks(rotation = 45)
+fig, ax  = plt.subplots(figsize = (10,8))
+color = sns.color_palette("Reds", 10)
+sns.barplot(t.index , t.values , ax = ax, palette=color)
+plt.xticks(rotation = 60)
 st.pyplot(fig)
 st.write('전체 기간 확진자 접촉력에 대해 파악한 막대 그래프입니다.최근 지역감염이 급격하게 증가하며 "기타확진자 접촉", "감염경로조사중" 등 원인을 파악하기 어려운 경우가 다분한것으로 보입니다.')
 
