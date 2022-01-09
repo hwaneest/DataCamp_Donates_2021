@@ -6,9 +6,7 @@ WORKDIR $APP_HOME
 RUN /usr/local/bin/python -m pip install --upgrade pip
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-COPY app/ ./app/
-COPY data/ ./data/
-COPY font/ ./font/
+COPY . .
 CMD streamlit run --server.port 8080 app/app.py
 
 # enableCORS needed?
